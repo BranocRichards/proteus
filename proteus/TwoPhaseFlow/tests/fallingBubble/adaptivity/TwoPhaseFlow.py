@@ -39,9 +39,19 @@ if structured:
     nnx = 4 * refinement**2 + 1
     nny = nnx
     nnz = None if opts.nd == 2 else nnx
+
     domain = Domain.RectangularDomain(tank_dim)    
     domain.boundaryTags = boundaryTags
     he = tank_dim[0]/(nnx - 1)
+    domain.vertices = [[0.0, 0.0],  #0
+                [tank_dim[0], 0.0],  #1
+                [tank_dim[0], tank_dim[1]],  #2
+                [0.0, tank_dim[1]]]  #3
+    domain.vertexFlags = [boundaryTags['left'],
+                   boundaryTags['bottom'],
+                   boundaryTags['right'],
+                   boundaryTags['top']]
+
 else:
     if opts.nd==2:
         vertices = [[0.0, 0.0],  #0
