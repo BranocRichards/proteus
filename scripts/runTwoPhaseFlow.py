@@ -75,7 +75,11 @@ if opts.pumi:
     path = "./splitMesh/"
 
     # FIRST STAGE: CREATE THE MESH IN SERIAL #
-    os.system("parun --TwoPhaseFlow --pumi -l" + str(opts.logLevel) + " -v TwoPhaseFlow_so.py ")
+    
+    err = os.system("parun --TwoPhaseFlow --pumi -l" + str(opts.logLevel) + " -v TwoPhaseFlow_so.py ")
+    if(err):
+        import sys
+        sys.exit("error during proteus mesh to PUMI model derivation phase\n")
     
     # SECOND STAGE: SPLIT THE MESH IN PARALLEL #
     split = ("mpiexec -np " + str(opts.num_proc) +

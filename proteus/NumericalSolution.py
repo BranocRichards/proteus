@@ -559,6 +559,10 @@ class NS_base(object):  # (HasTraits):
           from scipy import spatial
           meshVertexTree = spatial.cKDTree(theMesh.nodeArray)
           meshVertex2Model= [0]*theMesh.nNodes_owned
+
+          assert theDomain.vertices, "model vertices (domain.vertices) were not specified"
+          assert theDomain.vertexFlags, "model classification (domain.vertexFlags) needs to be specified" 
+
           for idx,vertex in enumerate(theDomain.vertices):
             if(pCT.nd==2 and len(vertex) == 2): #there might be a smarter way to do this
               vertex.append(0.0) #need to make a 3D coordinate
