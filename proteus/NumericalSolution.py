@@ -778,7 +778,7 @@ class NS_base(object):  # (HasTraits):
 
         if self.TwoPhaseFlow:
             nLevels = 1 #p0.myTpFlowProblem.general['nLevels']
-            nLayersOfOverlapForParallel = 1 #p0.myTpFlowProblem.general['nLayersOfOverlapForParallel']
+            nLayersOfOverlapForParallel = 0 #p0.myTpFlowProblem.general['nLayersOfOverlapForParallel']
             parallelPartitioningType = MeshTools.MeshParallelPartitioningTypes.element
             domain = p0.myTpFlowProblem.domain
             domain.MeshOptions.setParallelPartitioningType('element')            
